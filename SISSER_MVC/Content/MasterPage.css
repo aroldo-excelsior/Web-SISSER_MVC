@@ -1,0 +1,389 @@
+.tg  {
+
+	width: 90%;	
+	min-width: 90%;
+	
+}
+.tg td{
+
+	background-color: #fff;
+	font-family: Arial;
+	font-size: 13px;
+	font-weight: bold;
+	color: #000;
+	height: 30px;
+	min-height: 30px;
+	text-align: center;
+	word-wrap: break-word;
+	border: solid 1px black;
+	padding-right: 2px;
+	padding-left: 2px;
+
+}
+.tg th{
+
+	background-color: #646464;
+	font-family: Arial;
+	color: White;
+	height: 30px;
+	min-height: 30px;
+	text-align: center;
+	font-size: 16px;
+	border: solid 1px black;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+ 
+.tg .red{color: red}
+.tg .green{color: green}
+
+
+	#itens  /* CLimite.aspx */
+	{
+	
+		font-weight: bold;
+	
+	}
+	
+    
+	#itens p  /* CLimite.aspx */
+	{
+	
+	 margin: 0 auto;
+	 padding-right: 220px;
+	 white-space: nowrap;
+	 font-family: "Times New Roman", Times, serif;
+	 
+	 
+	}
+	
+	.input /* CLimite.aspx */
+	{
+	
+	padding-left: 20px;
+	padding-right: 20px;
+	
+	
+	
+	}
+	.lUser
+	{
+	
+	align: left;
+	position: absolute;
+	left: 75%;
+	top: 2px;
+	color: #191970;
+	white-space: nowrap;
+	
+	}
+	
+	.retangulo
+	{
+	
+ 	 width: 290px;
+  	 height: 40px;
+ 	 border-bottom: 2px solid #ccc;
+ 	 border-right: 2px solid #ccc;
+ 	 border-left: 2px solid #ccc;
+ 	 border-top: 2px solid #ccc;
+ 	 -moz-border-radius:10px;
+	 -webkit-border-radius:10px;
+ 	 border-radius:10px;
+ 	 margin: 0;
+ 	 text-align: center;
+ 	 
+ 	 
+ 	 
+	}
+	
+	.ano{
+	
+		margin-left:10px;
+		margin-right:5px;
+	
+	}
+	.retangulo #cnpj{
+		
+		padding-left:30px;
+	
+	}
+	
+	.rectangleListarProp
+	{
+	
+ 	 width: 70%;
+  	 height: 40%;
+  	 min-width:220px;
+  	 padding-top: 7px;
+  	 padding-bottom: 7px;
+ 	 border-bottom: 1px solid #191970;
+ 	 border-right: 1px solid #191970;
+ 	 border-left: 1px solid #191970;
+ 	 border-top: 1px solid #191970;
+ 	 -moz-border-radius:10px;
+	 -webkit-border-radius:10px;
+ 	 border-radius:10px;
+ 	 margin: 0;
+ 	 text-align: center;
+ 	 
+	}
+	
+	
+	
+	
+	
+	/* CONFIGURACOES GERAL */
+	
+	/* PProposta codigo sisser */
+	.CdSISSER
+	{
+		color: #191970;
+		font-weight: bold;
+		font: 26px Cambria;
+		text-shadow: 1px 1px 1px #cccccc, 1px 1px 1px #191970, 1px 1px 1px #cccccc;
+	
+	}
+	
+	.sub{
+	
+		margin-left:10px;
+	}
+	
+	.tipodoc{
+	
+		color: #191970;
+		font-weight: bold;
+		font: 16px Cambria;
+		
+	}
+	
+	.Datainifim
+	{
+		
+		color: #000000;
+		font-weight: bold;
+		font: 22px Cambria;
+		text-shadow: 1px 1px 1px #cccccc, 1px 1px 1px #191970, 1px 1px 1px #cccccc;
+		white-space: nowrap;
+	
+	}
+	.spanBtnListar{
+		
+		padding-left:20px;
+		margin-top: 1px;
+		width:250px;
+		
+		
+	}
+	
+	.spanDatainifin{
+	
+		white-space: nowrap;
+		padding-bottom:6px;
+		margin-left:9px;
+		width:100px;
+	}
+	
+	.information
+	{
+		line-height:50px;
+		padding-left: 100px;
+	
+	}
+	
+	.CdSISSERVal
+	{
+		color: #000000;
+		font-weight: bold;
+		font: 26px Cambria;
+		text-shadow: 1px 1px 1px #cccccc, 1px 1px 1px #191970, 1px 1px 1px #cccccc;
+	
+	
+	}
+	
+	.buttonl
+	{
+	
+		padding-left: 120px;
+		padding-right: 120px;
+	 	font-size: 12px;
+   	 	font-family:  Arial;
+   	 	color:  #191970;
+   	 	cursor: pointer;
+	
+	}
+	
+	.buttonl:hover 
+	{
+     box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+	
+	
+	.buttont
+	{
+	
+		
+	 	font-size: 12px;
+    	font-weight: bold;
+   	 	font-family:  Arial;
+   	 	color:  #191970;
+   	 	cursor: auto;
+	
+	}
+	
+	
+	
+	.buttont:hover 
+	{
+     box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+	
+	
+	
+	.button 
+	{
+     font-size: 12px;
+     font-weight: bold;
+   	 font-family:  Arial;
+   	 color:  #191970;
+   	 cursor: pointer;
+ 	}
+ 	
+	.button:hover 
+	{
+     box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+	
+	
+
+	#geral
+
+	{
+	
+		border-top: 3px solid #191970;
+    	/*border: 3px solid #191970;*/
+    	margin: 1px auto;
+    	width: 100%;
+    	
+    
+	}
+	
+	
+	
+	
+	/* CABECALHO */
+
+	#cabecalho
+
+	{
+
+    min-height: 60px;
+    line-height: 60px;
+    padding: 15px 15px;
+    background-color: #fff;
+    border-bottom: 3px solid #191970;
+	}
+	
+	#cabecalho .Title
+	{
+	
+	/*margin-left: 25%;*/
+	padding-right: 220px;
+    color: #191970;
+	text-shadow: 2px 2px 2px #cccccc, 2px 2px 2px #191970, 2px 2px 2px #cccccc;
+	text-decoration:none;
+	font: 50px Cambria;
+	white-space: nowrap;
+	
+	
+	}
+
+	#cabecalho img.alignleft 
+	
+	{
+	
+	float:left;
+	margin:0 1em 1em 0;
+	width:205; 
+	height:70;
+	
+	
+	}
+	
+	
+	#menu
+	
+	{
+		
+		float: left;
+		width:60px;
+		clear:both;
+		
+	}
+	
+	
+	#content
+	
+	{
+		
+		margin-left: 1%;
+		
+	}
+	
+	/* Listar Proposta*/
+	
+	.ger{
+	
+		margin-top: 10px;
+		
+	}	
+	/* index  */
+	
+	#flash
+	{
+		border: 1px solid #191970;
+		-moz-border-radius:7px;
+		-webkit-border-radius:7px;
+ 		border-radius:7px;
+ 		width:920px;
+ 		height:190px;
+ 		background-color:white;
+	
+	}
+	
+
+	/* CONTEUDO  */
+
+	#conteudo
+
+	{
+		
+    min-height: 500px;
+    background-color: #fff;
+    
+	}
+
+	/* RODAPE */
+
+	#rodape
+
+	{
+	
+	border-top: 3px solid #191970;
+	border-bottom: 3px solid #191970;
+    background-color: #ccc;
+    min-height: 50px;
+    line-height: 50px;
+
+	}
+	
+	#rodape footer
+	{
+	
+		text-align: right;
+		padding-right: 50px;
+	
+	
+	}
+

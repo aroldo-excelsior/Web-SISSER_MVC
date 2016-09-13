@@ -1,0 +1,67 @@
+﻿@model IList<SISSERHelper.Proposta>
+
+@{
+	
+}
+	<div class="ger" align="center">
+		@using (Html.BeginForm("Listar","LProposta",FormMethod.Post,new {@nome = "formList",@id="formList"})){
+	
+			<span class="spanDatainifin">
+			<span id="dtini" class="Datainifim">Data Inicial: </span>
+			@Html.TextBox("textDtIni","", new{ @onkeypress = "return PermiteSomenteNumeros(event);",required = "required", @class = "btntext btntext-default ", @id = "textDtIni" })
+			</span>
+
+			<span class="spanDatainifin">
+			<span id="dtfin" class="Datainifim">Data Final: </span>
+			@Html.TextBox("textDtFin","", new{ @onkeypress = "return PermiteSomenteNumeros(event);",required = "required", @class = "btntext btntext-default ", @id = "textDtFin" })
+			</span>
+			
+			<span class="spanBtnListar">
+			<input type="submit"  value="Listar"  class="btn btn-primary spanBtnListar" />
+			</span>	
+		}
+		<br></br>
+		@if(Model != null){
+			if(Model.Count != 0){
+			
+			<table class="tg">
+				<tr>
+					<th>ID</th>
+					<th>Data Proposta</th>
+					<th>Código SISSER</th>
+					<th>Numero Proposta</th>
+					<th>Nome Segurado</th>
+					<th>CPF\CNPJ</th>
+					<th>Autorizar</th>
+					<th>Detalhes</th>
+				<tr>
+			@foreach(var m in Model){
+				<tr>
+				
+					<td>@m.id_Apolice</td>
+					<td>@m.dt_proposta</td>
+					@if(@m.cdPropostaSISSER.Equals("Não Apresenta")){
+					<td style="color:red;">@m.cdPropostaSISSER</td>
+					}else{
+					<td>@m.cdPropostaSISSER</td>
+					}
+					<td>@m.nrProposta</td>
+					<td>@m.nmSegurado</td>
+					<td>@m.nrCpfCnpjSegurado</td>
+					@if(@m.cdPropostaSISSER.Equals("Não Apresenta") && @m.autorizacao_usuario == 0){
+					<td><a href='@Url.Action("Autorizar","LProposta",new { idd = @m.id_Apolice, dataini = @Request["textDtIni"], datafin = @Request["textDtFin"] })' class="btntabela btn-primary " id="Autorizar_LProposta">Autorizar</a></td>
+					}else{
+					 <td class="green">Autorizado</td>
+					}
+					<td><a href='@Url.Action("Listar","PProposta",new { proposta = @m.nrProposta })' target="_blank" class="btntabela btn-primary " id="Autorizar_LProposta">Exibir</a></td>
+				</tr>
+			}
+			</table>
+			}else{
+			
+				@Html.Label("Information","Não a dados para esta consulta.",new{@class="linfo",style="color:red;"})
+				
+			}
+		}
+		
+	</div>

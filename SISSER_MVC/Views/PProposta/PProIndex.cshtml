@@ -1,0 +1,78 @@
+﻿@model IList<SISSERHelper.EventLog>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<div class="ger">
+	
+	
+		@using (Html.BeginForm("Listar","PProposta",FormMethod.Post,new {@nome = "formProp", @id = "formProp"})){
+ 				 <H4 ALIGN="center">
+ 				 <span id "prop" class="CdSISSER">Proposta: </span>@Html.TextBox("proposta","", new { @onkeypress = "return PermiteSomenteNumeros(event);", required = "required",@class ="btntext btntext-default",@id="proposta" })
+				<input type="submit"  value="Procurar"  onclick="return validar();" class="btn btn-primary" />
+				</h4>
+			}
+			
+				<div align="center">
+    			@if(Model != null){
+    			
+    				if(Model.Count != 0){
+    				
+    					if(Model[0].Codigo_Proposta_SISSER != null){
+    					
+    					
+    						if(Model[0].Codigo_Proposta_SISSER.Equals("Não Apresenta") && Model[0].autorizacao_usuario == 0){
+    							<span id="CdSISSER" class="CdSISSER">Código Proposta SISSER: </span>
+    						
+    						
+    							<a href='@Url.Action("Autorizar","PProposta",new { id= @Model[0].IDApolice, proposta= @Model[0].Proposta })' class="btn btn-primary">Autorizar</a>
+    						
+    						
+    						}else{
+    					
+    							<span id="CdSISSER" class="CdSISSER">Código Proposta SISSER: </span><span class="CdSISSERVal"> @Model[0].Codigo_Proposta_SISSER </span>
+    						
+    						}
+    					}
+						<br></br>
+    						
+    						<table class="tg">
+  								<tr>
+   						 			<th>nº</th>
+    								<th>Data do Evento</th>
+    								<th>Descrição do Tipo do Evento</th>
+    								<th>Descrição do Evento</th>
+    								<th>Menssagem de Erro</th>
+    								<th>Retorno</th>
+    								<th>Dados Enviados</th>
+  								</tr>
+    							@foreach(var eve in Model){
+    								<tr>
+        								<td>@eve.Sequencia</td>
+        								<td>@eve.dt_rgs_insercao</td>
+        								<td>@eve.Descricao_Do_Tipo_De_Evento</td>
+        								<td>@eve.Descricao_Do_Evento</td>
+        								@if(eve.Message_De_Erro.Equals("Apresenta")){
+        								<td class="red" >@eve.Message_De_Erro</td>
+        								}else{
+        								<td class="green">@eve.Message_De_Erro</td>
+        								}
+        								<td><a href='@Url.Action("ShowXml","PProposta",new {id= @eve.id, comando= "trace" })' target="_blank" class="btntabela btn-primary">Exibir</a></td>
+        								<td><a href='@Url.Action("ShowXml","PProposta",new {id= @eve.id, comando= "trace" })' target="_blank" class="btntabela btn-primary">Exibir</a></td>
+    								</tr>
+    							}
+    							</table>
+    							
+    							}else{
+    								<span id="information" style="color:red;" class="information"> Não a dados para essa proposta.</span>
+    							
+    							}
+    							
+    						}
+					
+					
+				</div>
+				</br>
+		</div>
+   		

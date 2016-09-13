@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		
+		<title>SISSE_GUI</title>
+		
+		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		
+		
+		
+		<script type="text/javascript">
+        	function PermiteSomenteNumeros(event){
+            	var charCode = (event.which) ? event.which : event.keyCode
+            	if (charCode  >  31 && (charCode  <  48 || charCode  >  57))
+                	return false;
+            	return true;
+        	}
+     	</script>
+     	
+     	<link href="@Url.Content("~/Content/MasterPage.css")" rel="stylesheet" 
+        type="text/css" />
+        
+        
+     	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" 
+        type="text/css" />
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 		
+ 		
+ 		
+ 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+ 		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+     	
+     	<script src="@Url.Content("~/Scripts/mascara.js")" 
+        type="text/javascript"></script>
+        	<script src="@Url.Content("~/Scripts/modernizr-2.5.3.js")" 
+        type="text/javascript"></script>
+        
+        <script src="@Url.Content("~/Scripts/ValidarProposta.js")" 
+        type="text/javascript"></script>
+        
+        
+        <script src="@Url.Content("~/Scripts/replaceForAutorizar.js")" 
+        type="text/javascript"></script>
+        
+        <script src="@Url.Content("~/Scripts/js-sisser.js")" 
+        type="text/javascript"></script>
+        
+        
+        
+        
+        
+       <!--bootstrap inicio
+       
+        <script src="@Url.Content("~/Scripts/bootstrap.min.js")" 
+        type="text/javascript"></script>
+        
+        <script src="@Url.Content("~/Scripts/jquery.min.js")" 
+        type="text/javascript"></script>
+        
+     	
+     	<!--bootstrap fim-->
+     	
+		<script>
+			$(function() {
+   				$( "#textDtIni" ).datepicker({
+   					dateFormat: 'dd/mm/yy',
+   					changeMonth: true,
+        			changeYear: true,
+        			showOtherMonths: true,
+        			selectOtherMonths: true,
+        			dateFormat: 'dd/mm/yy',
+        			dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        			dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        			dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        			monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        			monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+   			
+   				});
+			});
+			
+			$(function() {
+   				$( "#textDtFin" ).datepicker({
+   					dateFormat: 'dd/mm/yy',
+   					changeMonth: true,
+        			changeYear: true,
+        			showOtherMonths: true,
+        			selectOtherMonths: true,
+        			dateFormat: 'dd/mm/yy',
+        			dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        			dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        			dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        			monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        			monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+   				});
+			});
+			
+		</script>
+
+	</head>
+	<body background="res\background.jpg">
+		<div id="geral">
+				<div id="cabecalho" align="center" style="background-color:lavender;">
+            	
+            			<img  src="~/Content/Excelsior.png" class="alignleft">
+            			<a class="Title" href='@Url.Action("Index","Home","")'>Controle de Subvenção Federal</a>
+            	
+				</div>
+	
+            	<div id="menu" >
+					<div class="dropdown">
+						<a class="btn btn-primary dropdown-toggle"  id="dropdownMenu1" data-toggle="dropdown"> &nbsp Menu<span class="caret"></span> </a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        					<li><a href="@Url.Action("PProIndex","PProposta")" style="border-bottom: 1px solid #ccc">Pesquisar Prospota</a></li>
+        					<li><a href="@Url.Action("LProIndex","LProposta")" style="border-bottom: 1px solid #ccc">Listar Prospotas</a></li>
+        					<li><a href="@Url.Action("CLimIndex","CLimite")">Consultar Limite</a></li>
+      					</ul>
+      				</div>
+				</div>
+					
+				
+            			
+            	<div id="conteudo" style="background-color:lavender;">
+					</br>
+              			@RenderBody()
+					</br>
+				</div>
+           		<div id="rodape">
+					
+               		<footer> Version 1.2.9 - 2016 by Cia Excelsior de Seguros Development Team.</footer>
+
+            	</div>
+           </div>
+	</body>
+</html>
