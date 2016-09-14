@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
     <Reference Include="SISSERCore">
       <HintPath>..\..\SISSE_GUI\SISSE_GUI\bin\SISSERCore.dll</HintPath>
     </Reference>
@@ -71,6 +74,7 @@
     <None Include="Content\bootstrap.min.css" />
     <None Include="Content\Excelsior.jpg" />
     <None Include="Content\Excelsior.png" />
+    <None Include="Content\imgindex.png" />
     <None Include="Content\MasterPage.css" />
     <None Include="Content\Site.css" />
     <None Include="Global.asax" />

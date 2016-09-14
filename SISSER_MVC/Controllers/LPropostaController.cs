@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using SISSERHelper;
 using System.Collections.Generic;
 using SISSERCore;
+using PagedList;
 
 namespace SISSER_MVC.Controllers
 {
@@ -19,7 +20,7 @@ namespace SISSER_MVC.Controllers
 		}
 		
 		
-		public ActionResult Listar(string textDtIni ,string textDtFin){
+		public ActionResult Listar(string textDtIni ,string textDtFin,int? pagina){
 			
 			DateTime dtini;
 			DateTime dtfin;
@@ -30,12 +31,20 @@ namespace SISSER_MVC.Controllers
 			textDtIni = dtini.ToString("yyy/MM/dd");
 			textDtFin = dtfin.ToString("yyy/MM/dd");
 			
-			List<SISSERHelper.Proposta> props = Controle.Getinstance().ResgatarPropostas("DESC",textDtIni,textDtFin);
-		
+			//List<SISSERHelper.Proposta> props = Controle.Getinstance().ResgatarPropostas("DESC",textDtIni,textDtFin);
+			
+			
+			var props = Controle.Getinstance().ResgatarPropostas("DESC",textDtIni,textDtFin);
+            int paginaTamanho = 10;
+            int paginaNumero = (pagina ?? 1);
+
+            return View("LProIndex","",props.ToPagedList(paginaNumero, paginaTamanho));
+			
 			//return "Data Inicial: "+textDtIni+" Data Final: "+textDtFin;
 			
-			return View("LProIndex","",props);
+			//return View("LProIndex","",props);
 		}
+		
 		
 		public ActionResult Autorizar(string idd, string dataini,string datafin){
 			

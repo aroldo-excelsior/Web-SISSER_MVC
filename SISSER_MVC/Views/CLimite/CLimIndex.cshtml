@@ -44,35 +44,36 @@
 			
 			@if(Model != null){
 				if(Model.Count != 0){
-				
-			<table class="tg">
+			<div class="table-responsive" style="width:90%">
+			<table class="display dataTable no-footer">
   				<tr>
    					<th>Nome Segurado</th>
     				<th>CPF/CNPJ</th>
     				<th>Ano</th>
   				</tr>
   				@foreach(var seg in Model){
-				<tr>
+				<tr class="odd gradeX">
         			<td>@seg.NomeSegurado</td>
         			<td>@seg.NrCPFCNPJSegurado</td>
         			<td>@seg.LimiteFinanceiro.AnoPeriodoExercicio</td>
         		</tr>
 				}
 			</table>
-			<table class="tg">
+			<table class="display dataTable no-footer">
   				<tr>
    					<th>Descrição Modalidade</th>
     				<th>Saldo Comprometido</th>
     				<th>Saldo Disponivel</th>
   				</tr>
   				@foreach(var seg in Model[0].LimiteFinanceiro.Modalidades){
-				<tr>
+				<tr class="odd gradeX">
         			<td>@String.Format("{0:C}",@seg.DsModalidade)</td>
         			<td>@String.Format("{0:C}",@seg.VlSaldoComprometido)</td>
         			<td>@String.Format("{0:C}",@seg.VlSaldoDisponivel)</td>
         		</tr>
 				}
 			</table>
+			</div>
 			}else{
 				@Html.Label("Information","Não a dados para este CPF/CNPJ.",new{@class="linfo",style="color:red;"})
 			}

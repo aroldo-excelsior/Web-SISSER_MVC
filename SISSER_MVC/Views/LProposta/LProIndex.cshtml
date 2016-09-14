@@ -1,6 +1,12 @@
-﻿@model IList<SISSERHelper.Proposta>
+﻿@model PagedList.IPagedList<SISSERHelper.Proposta>
 
 @{
+
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+         	$('#LProTable').dataTable();
+     	} );
+	</script>
 	
 }
 	<div class="ger" align="center">
@@ -23,8 +29,9 @@
 		<br></br>
 		@if(Model != null){
 			if(Model.Count != 0){
-			
-			<table class="tg">
+		<div class="table-responsive" style="width:90%">
+			<table id="myTable" class="display dataTable no-footer" style="width: 100%;">
+				
 				<tr>
 					<th>ID</th>
 					<th>Data Proposta</th>
@@ -32,11 +39,12 @@
 					<th>Numero Proposta</th>
 					<th>Nome Segurado</th>
 					<th>CPF\CNPJ</th>
-					<th>Autorizar</th>
+					<th>Atorização</th>
 					<th>Detalhes</th>
+					
 				<tr>
-			@foreach(var m in Model){
-				<tr>
+				@foreach(var m in Model){
+				<tr class="odd gradeX">
 				
 					<td>@m.id_Apolice</td>
 					<td>@m.dt_proposta</td>
@@ -57,6 +65,32 @@
 				</tr>
 			}
 			</table>
+			<div>
+   				 Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+     
+    			@if (Model.HasPreviousPage){
+        			@Html.ActionLink("<<", "Listar", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"]  })
+        			@Html.Raw(" ");
+        			@Html.ActionLink("< Anterior", "Listar", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"]  })
+    			}else
+    			{
+        			@:<<
+        			@Html.Raw(" ");
+        			@:< Anterior
+    			}
+     
+    			@if (Model.HasNextPage){
+        			@Html.ActionLink("Próxima >", "Listar", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"]  })
+        			@Html.Raw(" ");
+        			@Html.ActionLink(">>", "Listar", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"] })
+    			}else
+    			{
+        			@:Próxima >
+        			@Html.Raw(" ")
+        			@:>>
+    			}
+			</div>
+		</div>
 			}else{
 			
 				@Html.Label("Information","Não a dados para esta consulta.",new{@class="linfo",style="color:red;"})

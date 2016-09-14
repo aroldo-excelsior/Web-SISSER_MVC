@@ -1,7 +1,9 @@
-﻿@model IList<SISSERHelper.EventLog>
+﻿@model PagedList.IPagedList<SISSERHelper.EventLog>
 
 @{
 	ViewBag.Title = "Index";
+	
+	
 }
 
 <div class="ger">
@@ -25,7 +27,6 @@
     						if(Model[0].Codigo_Proposta_SISSER.Equals("Não Apresenta") && Model[0].autorizacao_usuario == 0){
     							<span id="CdSISSER" class="CdSISSER">Código Proposta SISSER: </span>
     						
-    						
     							<a href='@Url.Action("Autorizar","PProposta",new { id= @Model[0].IDApolice, proposta= @Model[0].Proposta })' class="btn btn-primary">Autorizar</a>
     						
     						
@@ -36,8 +37,8 @@
     						}
     					}
 						<br></br>
-    						
-    						<table class="tg">
+    					<div class="table-responsive" style="width:90%">
+    						<table class="display dataTable no-footer" id="Ltable">
   								<tr>
    						 			<th>nº</th>
     								<th>Data do Evento</th>
@@ -48,7 +49,7 @@
     								<th>Dados Enviados</th>
   								</tr>
     							@foreach(var eve in Model){
-    								<tr>
+    								<tr class="odd gradeX">
         								<td>@eve.Sequencia</td>
         								<td>@eve.dt_rgs_insercao</td>
         								<td>@eve.Descricao_Do_Tipo_De_Evento</td>
@@ -63,13 +64,38 @@
     								</tr>
     							}
     							</table>
-    							
+    							<div>
+   				 					Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+     
+    								@if (Model.HasPreviousPage){
+        								@Html.ActionLink("<<", "Listar", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, proposta = @Request["proposta"]  })
+        								@Html.Raw(" ");
+        								@Html.ActionLink("< Anterior", "Listar", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, proposta = @Request["proposta"]  })
+    								}else
+    								{
+        								@:<<
+        								@Html.Raw(" ");
+        								@:< Anterior
+    								}
+     
+    								@if (Model.HasNextPage){
+        								@Html.ActionLink("Próxima >", "Listar", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, proposta = @Request["proposta"]  })
+        								@Html.Raw(" ");
+        								@Html.ActionLink(">>", "Listar", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, proposta = @Request["proposta"] })
+    								}else
+    								{
+        								@:Próxima >
+        								@Html.Raw(" ")
+        								@:>>
+    								}
+								</div>
+							</div>
     							}else{
     								<span id="information" style="color:red;" class="information"> Não a dados para essa proposta.</span>
     							
     							}
-    							
-    						}
+    						
+    					}
 					
 					
 				</div>

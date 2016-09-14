@@ -7,3 +7,5 @@ C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bi
 C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSERCore.pdb
 C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSERHelper.dll
 C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSERHelper.pdb
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\PagedList.dll
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\PagedList.xml

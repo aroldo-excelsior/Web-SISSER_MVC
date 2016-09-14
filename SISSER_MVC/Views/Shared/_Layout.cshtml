@@ -10,14 +10,15 @@
 		<meta name="description" content="" />
 		
 		
-		
 		<script type="text/javascript">
+		
         	function PermiteSomenteNumeros(event){
             	var charCode = (event.which) ? event.which : event.keyCode
             	if (charCode  >  31 && (charCode  <  48 || charCode  >  57))
                 	return false;
             	return true;
         	}
+        	
      	</script>
      	
      	<link href="@Url.Content("~/Content/MasterPage.css")" rel="stylesheet" 
@@ -26,6 +27,9 @@
         
      	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" 
         type="text/css" />
+        
+        
+        
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  		
@@ -50,6 +54,8 @@
         <script src="@Url.Content("~/Scripts/js-sisser.js")" 
         type="text/javascript"></script>
         
+        <link href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+		<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
         
         
         
@@ -100,15 +106,25 @@
 			});
 			
 		</script>
+		
 
 	</head>
 	<body background="res\background.jpg">
 		<div id="geral">
 				<div id="cabecalho" align="center" style="background-color:lavender;">
-            	
-            			<img  src="~/Content/Excelsior.png" class="alignleft">
-            			<a class="Title" href='@Url.Action("Index","Home","")'>Controle de Subvenção Federal</a>
-            	
+            		<div class="container-fluid">
+            			<div class="row">
+            				<div class="col-md-3" align="left" >
+            				<img  src="~/Content/Excelsior.png" class="alignleft">
+            				</div>
+            				<div class="col-md-6"  style="min-width:750px;">
+            				<a class="Title" href='@Url.Action("Index","Home","")'>Controle de Subvenção Federal</a>
+            				</div>
+            				<div class="col-md-3" align="left">
+            				<span id="lUser" class="lUser">Usuario: @Request.ServerVariables["AUTH_USER"]</span>
+            				</div>
+            			</div>
+            		</div>
 				</div>
 	
             	<div id="menu" >
