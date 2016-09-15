@@ -8,6 +8,8 @@
      	} );
 	</script>
 	
+	
+	
 }
 	<div class="ger" align="center">
 		@using (Html.BeginForm("Listar","LProposta",FormMethod.Post,new {@nome = "formList",@id="formList"})){
@@ -30,11 +32,11 @@
 		@if(Model != null){
 			if(Model.Count != 0){
 		<div class="table-responsive" style="width:90%">
-			<table id="myTable" class="display dataTable no-footer" style="width: 100%;">
+			<table id="myTable table" class="display dataTable no-footer" style="width: 100%;">
 				
 				<tr>
 					<th>ID</th>
-					<th>Data Proposta</th>
+					<th><a href="@Url.Action("Listar","LProposta",new { pagina = Model.PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"]  })" style="text-decoration:none; color:black;">Data Proposta <img src='~/Content/cb.jpg' height='14' width='20'/></a></th>
 					<th>Código SISSER</th>
 					<th>Numero Proposta</th>
 					<th>Nome Segurado</th>

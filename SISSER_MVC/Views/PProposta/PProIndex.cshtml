@@ -38,10 +38,10 @@
     					}
 						<br></br>
     					<div class="table-responsive" style="width:90%">
-    						<table class="display dataTable no-footer" id="Ltable">
+    						<table class="display dataTable no-footer table" id="Ltable">
   								<tr>
    						 			<th>nº</th>
-    								<th>Data do Evento</th>
+   						 			<th><a href="@Url.Action("Listar","PProposta",new { pagina = Model.PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, proposta = @Request["proposta"] })" style="text-decoration:none; color:black;">Data do Evento<img src='~/Content/cb.jpg' height='14' width='20'/></a></th>
     								<th>Descrição do Tipo do Evento</th>
     								<th>Descrição do Evento</th>
     								<th>Menssagem de Erro</th>
@@ -60,7 +60,7 @@
         								<td class="green">@eve.Message_De_Erro</td>
         								}
         								<td><a href='@Url.Action("ShowXml","PProposta",new {id= @eve.id, comando= "trace" })' target="_blank" class="btntabela btn-primary">Exibir</a></td>
-        								<td><a href='@Url.Action("ShowXml","PProposta",new {id= @eve.id, comando= "trace" })' target="_blank" class="btntabela btn-primary">Exibir</a></td>
+        								<td><a href='@Url.Action("ShowXml","PProposta",new {id= @eve.id, comando= "dados" })' target="_blank" class="btntabela btn-primary">Exibir</a></td>
     								</tr>
     							}
     							</table>

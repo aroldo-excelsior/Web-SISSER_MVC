@@ -27,7 +27,15 @@ namespace SISSER_MVC.Controllers
 		public ActionResult Listar(string proposta, int? pagina)
 		{
 			
-			var ev = Controle.Getinstance().ResgatarEventLogs(proposta);
+			if(Session["pOrder"] == null){
+				Session["pOrder"] = "DESC";
+			}else if(Session["pOrder"].ToString().Equals("DESC")){
+				Session["pOrder"] ="ASC";
+			}else{
+				Session["pOrder"] = "DESC";
+			}
+			
+			var ev = Controle.Getinstance().ResgatarEventLogs(Session["pOrder"].ToString(),proposta);
 			if(ev.Count != 0)
 			ev[0].Proposta = long.Parse(proposta);
 			

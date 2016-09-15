@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Web.Mvc;
 using SISSERHelper;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SISSER_MVC.Controllers
 		
 		public ActionResult LProIndex()
 		{
+			
 			return View();
 		}
 		
@@ -24,6 +26,15 @@ namespace SISSER_MVC.Controllers
 			
 			DateTime dtini;
 			DateTime dtfin;
+			
+			
+			if(Session["lOrder"] == null){
+				Session["lOrder"] = "DESC";
+			}else if(Session["lOrder"].ToString().Equals("DESC")){
+				Session["lOrder"] ="ASC";
+			}else{
+				Session["lOrder"] = "DESC";
+			}
 			
 			dtini = DateTime.Parse(textDtIni);
 			dtfin = DateTime.Parse(textDtFin);
@@ -34,7 +45,9 @@ namespace SISSER_MVC.Controllers
 			//List<SISSERHelper.Proposta> props = Controle.Getinstance().ResgatarPropostas("DESC",textDtIni,textDtFin);
 			
 			
-			var props = Controle.Getinstance().ResgatarPropostas("DESC",textDtIni,textDtFin);
+			var props = Controle.Getinstance().ResgatarPropostas(Session["lOrder"].ToString(),textDtIni,textDtFin);
+			
+			
             int paginaTamanho = 10;
             int paginaNumero = (pagina ?? 1);
 
