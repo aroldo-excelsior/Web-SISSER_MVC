@@ -1,0 +1,11 @@
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSER_MVC.dll
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSER_MVC.pdb
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\obj\Debug\SISSER_MVC.csprojResolveAssemblyReference.cache
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\obj\Debug\SISSER_MVC.dll
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\obj\Debug\SISSER_MVC.pdb
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSERCore.dll
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSERCore.pdb
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSERHelper.dll
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\SISSERHelper.pdb
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\PagedList.dll
+C:\Users\aroldo.andrade\Documents\SharpDevelop Projects\SISSER_MVC\SISSER_MVC\bin\PagedList.xml

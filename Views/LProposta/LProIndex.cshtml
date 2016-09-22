@@ -1,0 +1,109 @@
+﻿@model PagedList.IPagedList<SISSERHelper.Proposta>
+
+@{
+
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+         	$('#LProTable').dataTable();
+     	} );
+	</script>
+	
+	
+	
+}
+	<div class="ger" align="center">
+		@using (Html.BeginForm("Listar","LProposta",FormMethod.Post,new {@nome = "formList",@id="formList"})){
+	
+			<span class="spanDatainifin">
+			<span id="dtini" class="Datainifim">Data Inicial: </span>
+			@Html.TextBox("textDtIni","", new{ @onkeypress = "return PermiteSomenteNumeros(event);",required = "required", @class = "btntext btntext-default ", @id = "textDtIni" })
+			</span>
+
+			<span class="spanDatainifin">
+			<span id="dtfin" class="Datainifim">Data Final: </span>
+			@Html.TextBox("textDtFin","", new{ @onkeypress = "return PermiteSomenteNumeros(event);",required = "required", @class = "btntext btntext-default ", @id = "textDtFin" })
+			</span>
+			
+			<span class="spanBtnListar">
+			<input type="submit"  value="Listar"  class="btn btn-primary spanBtnListar" />
+			</span>	
+		}
+		<br></br>
+		@if(Model != null){
+			
+		<div class="table-responsive" style="width:90%">
+			<table id="myTable table" class="display dataTable no-footer" style="width: 100%;">
+				
+				<tr>
+					<th>ID</th>
+					<th><a href="@Url.Action("Listar","LProposta",new { pagina = Model.PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"]  })" style="text-decoration:none; color:black;">Data Proposta <img src='~/Content/cb.jpg' height='14' width='20'/></a></th>
+					<th>Código SISSER</th>
+					<th>Numero Proposta</th>
+					<th>Nome Segurado</th>
+					<th>CPF\CNPJ</th>
+					<th>Atorização</th>
+					<th>Detalhes</th>
+					
+				</tr>
+			@if(Model.Count != 0){
+				foreach(var m in Model){
+				<tr class="odd gradeX">
+				
+					<td>@m.id_Apolice</td>
+					<td>@m.dt_proposta</td>
+					@if(@m.cdPropostaSISSER.Equals("Não Apresenta")){
+					<td style="color:red;">@m.cdPropostaSISSER</td>
+					}else{
+					<td>@m.cdPropostaSISSER</td>
+					}
+					<td>@m.nrProposta</td>
+					<td>@m.nmSegurado</td>
+					<td>@m.nrCpfCnpjSegurado</td>
+					@if(@m.cdPropostaSISSER.Equals("Não Apresenta") && @m.autorizacao_usuario == 0){
+					<td><a href='@Url.Action("Autorizar","LProposta",new { idd = @m.id_Apolice, dataini = @Request["textDtIni"], datafin = @Request["textDtFin"] })' class="btntabela btn-primary " id="Autorizar_LProposta">Autorizar</a></td>
+					}else{
+					 <td class="green">Autorizado</td>
+					}
+					<td><a href='@Url.Action("Listar","PProposta",new { proposta = @m.nrProposta })' target="_blank" class="btntabela btn-primary " id="Autorizar_LProposta">Exibir</a></td>
+				</tr>
+				
+				}
+			}else{
+				
+				<tr>
+					<td colspan="8" align="center">
+						@Html.Label("Information","Não a dados para esta consulta.",new{@class="linfo",style="color:red;"})
+					</td>
+				</tr>
+			}
+			</table>
+			<div>
+   				 Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+     
+    			@if (Model.HasPreviousPage){
+        			@Html.ActionLink("<<", "Listar", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"]  })
+        			@Html.Raw(" ");
+        			@Html.ActionLink("< Anterior", "Listar", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"]  })
+    			}else
+    			{
+        			@:<<
+        			@Html.Raw(" ");
+        			@:< Anterior
+    			}
+     
+    			@if (Model.HasNextPage){
+        			@Html.ActionLink("Próxima >", "Listar", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"]  })
+        			@Html.Raw(" ");
+        			@Html.ActionLink(">>", "Listar", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, textDtIni = @Request["textDtIni"], textDtFin= @Request["textDtFin"] })
+    			}else
+    			{
+        			@:Próxima >
+        			@Html.Raw(" ")
+        			@:>>
+    			}
+			</div>
+		</div>
+			
+		}
+		
+	</div>

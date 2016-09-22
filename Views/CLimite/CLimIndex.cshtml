@@ -1,0 +1,93 @@
+﻿@model List<SISSERCore.Segurado>
+
+@{
+	ViewBag.Title = "CLimIndex";
+}
+
+<div class="geral">
+		<div id="itens" align="center">	
+			<p class="tipodoc">Tipo do documento:</p>
+			<div class="retangulo">
+			<label id="lcpf" class="CdSISSER lcpf">
+				@Html.CheckBox("cpf",false , new{ @class="input", id="cpf"}) CPF
+			</label>
+			<label id="lcnpj" class="CdSISSER">
+				@Html.CheckBox("cnpj",false , new{ @class="input", id="cnpj"}) CNPJ
+			</label>
+			</div>	
+			</br>
+			
+			@using(Html.BeginForm("CLimIndex","CLimite",FormMethod.Post,new{id="form1"})){
+			@Html.Label("CPFCNPJ","CPFCNPJ",new{@class="CdSISSER lCPFCNPJ",Text="",id="CPFCNPJ",style="display:none;" })
+			<!--<asp:Label id="CPFCNPJ" runat="server" Text=" "></asp:Label>-->
+			@Html.TextBox("TCPF","" ,new{@class="btntext btntext-default", onkeypress="return PermiteSomenteNumeros(event);",id="TCPF",style="display:none;"})
+			<!--<asp:TextBox id="CPF" onkeypress="return PermiteSomenteNumeros(event);" runat="server"></asp:TextBox>-->
+			@Html.Label("Ano: ",new{@class="CdSISSER ano",id="ano",style="display:none;" }) 
+			@Html.DropDownList(
+				"anos",
+				new SelectList(
+					new List<Object>{
+						new{ value = @DateTime.Now.Year, text = @DateTime.Now.Year.ToString()},
+						new{ value = ((@DateTime.Now.Year) - 1), text = ((@DateTime.Now.Year) - 1).ToString()}
+						},
+						"value",
+						"text"
+			),new{@class="btn btn-primary",id="DropList",style="display:none;"})
+			<!--<asp:Label id="ano" Text="Ano: " runat="server"/> <asp:DropDownList id="DropList" runat="Server"/></br>	-->
+			<input type="submit" value="Consultar" id="submit" class="btn btn-primary sub" style="display:none;"/>
+			<!--</br><asp:Button id="submit" Text="Cosultar" class="buttonl" runat="server" />-->
+			}
+			<h5 ALIGN="center">
+				<!--<asp:Label ID="information" runat="server" Text=""></asp:Label>-->
+			</h5>
+			
+			
+			@if(Model != null){
+				
+			<div class="table-responsive" style="width:90%">
+			<table class="display dataTable no-footer table">
+  				<tr>
+   					<th>Nome Segurado</th>
+    				<th>CPF/CNPJ</th>
+    				<th>Ano</th>
+  				</tr>
+  				@if(Model.Count != 0){
+  				foreach(var seg in Model){
+				<tr class="odd gradeX">
+        			<td>@seg.NomeSegurado</td>
+        			<td>@seg.NrCPFCNPJSegurado</td>
+        			<td>@seg.LimiteFinanceiro.AnoPeriodoExercicio</td>
+        		</tr>
+				}
+				}else{
+				<tr>
+					<td colspan="3" align="center">
+						@Html.Label("Information","Não a dados para este CPF/CNPJ.",new{@class="linfo",style="color:red;"})
+					</td>
+				</tr>	
+			}
+			</table>
+			<table class="display dataTable no-footer">
+  				<tr>
+   					<th>Descrição Modalidade</th>
+    				<th>Saldo Comprometido</th>
+    				<th>Saldo Disponivel</th>
+  				</tr>
+  				@if(Model.Count != 0){
+  					foreach(var seg in Model[0].LimiteFinanceiro.Modalidades){
+						<tr class="odd gradeX">
+        					<td>@String.Format("{0:C}",@seg.DsModalidade)</td>
+        					<td>@String.Format("{0:C}",@seg.VlSaldoComprometido)</td>
+        					<td>@String.Format("{0:C}",@seg.VlSaldoDisponivel)</td>
+        				</tr>
+					}
+				}else{
+					
+				}
+			</table>
+			</div>
+			
+			}
+			
+		</div>
+</div>
