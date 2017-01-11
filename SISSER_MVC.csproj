@@ -38,7 +38,7 @@
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
     <Reference Include="SISSERCore">
-      <HintPath>..\..\SISSE_GUI\SISSE_GUI\bin\SISSERCore.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\SISSERCore\07102016_Alterar_metodo_listarExec_proc_aroldo\07102016_Alterar_metodo_listarExec_proc_aroldo\WindowsService\SISSERCore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -59,9 +59,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AgenProcController.cs" />
+    <Compile Include="Controllers\CadPerfilController.cs" />
     <Compile Include="Controllers\CLimiteController.cs" />
+    <Compile Include="Controllers\EditPerfilController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LPerfilController.cs" />
     <Compile Include="Controllers\LPropostaController.cs" />
     <Compile Include="Controllers\PPropostaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -72,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\404.jpg" />
+    <None Include="Content\background.jpg" />
     <None Include="Content\bootstrap.min.css" />
     <None Include="Content\cb.jpg" />
     <None Include="Content\Excelsior.jpg" />
@@ -84,15 +89,26 @@
     <None Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <None Include="Scripts\jquery-1.7.2.js" />
     <None Include="Scripts\jquery-1.7.2.min.js" />
+    <None Include="Scripts\jquery-1.8.0-vsdoc.js" />
+    <None Include="Scripts\jquery-1.8.0.js" />
+    <None Include="Scripts\jquery-1.8.0.min.js" />
+    <None Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <None Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-1.8.1.js" />
     <None Include="Scripts\js-sisser.js" />
     <None Include="Scripts\mascara.js" />
     <None Include="Scripts\modernizr-2.5.3.js" />
+    <None Include="Views\AgenProc\AgenProcIndex.cshtml" />
+    <None Include="Views\AgenProc\Updatedbutton.cshtml" />
+    <None Include="Views\CadPerfil\CadPerfIndex.cshtml" />
+    <None Include="Views\CadPerfil\FormCadPerf.cshtml" />
     <None Include="Views\CLimite\CLimIndex.cshtml" />
+    <None Include="Views\EditPerfil\EditPerfIndex.cshtml" />
     <None Include="Views\Error\notfound.cshtml" />
     <None Include="Views\Error\Index.cshtml" />
     <None Include="Views\Error\Mapa.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\LPerfil\LPerfilIndex.cshtml" />
     <None Include="Views\LProposta\LProIndex.cshtml" />
     <None Include="Views\PProposta\PProIndex.cshtml" />
     <None Include="Views\PProposta\ShowXml.cshtml" />
@@ -108,10 +124,14 @@
     <Folder Include="Views\LProposta" />
     <Folder Include="Views\CLimite" />
     <Folder Include="Views\Error" />
+    <Folder Include="Views\CadPerfil" />
+    <Folder Include="Views\LPerfil" />
+    <Folder Include="Views\AgenProc" />
+    <Folder Include="Views\EditPerfil" />
     <Folder Include="Views\PProposta" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SISSERRepControle\SISSERRepControle\SISSERHelper.csproj">
+    <ProjectReference Include="..\..\SISSERHelper\SISSERHelper\SISSERHelper.csproj">
       <Project>{16FCE1BE-EED6-4960-B275-D1C3D48EEE7C}</Project>
       <Name>SISSERHelper</Name>
     </ProjectReference>

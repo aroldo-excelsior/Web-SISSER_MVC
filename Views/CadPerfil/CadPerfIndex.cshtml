@@ -1,0 +1,58 @@
+﻿@model SISSERHelper.Models.PerfilEnvioProgramaSubvencao
+
+@{
+	ViewBag.Title = "CadPerfIndex";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+	<div class="gercad">
+	<span class="CdSISSER"> Novo Perfil</h2> </span> 
+		@using (Html.BeginForm("CadPerfIndex","CadPerfil",FormMethod.Post,new {@nome = "formList",@id="formList"})){
+		<div class="panel panel-default">
+     		<div class="panel-body">
+				@{
+       				Html.RenderPartial("FormCadPerf");
+    			}
+         		<div class="orm-group col-md-12 col-sm-12 col-lg-12">
+               		<div class="input-content" align="center" style="width: 100%;">
+               			<input type="submit"  value="Cadastrar"  class="btn btn-primary formger formlabel forbtn" />
+                    </div>
+         		</div>
+         		
+         		@if(Model != null){
+         			if(Model.inserted == SISSERHelper.Enums.EnumInserted.InsertSuccess){
+                		<div class="alert alert-success" > <strong>Tudo certo!</strong> O perfil foi cadastrado.</div>
+         			}else if(Model.inserted == SISSERHelper.Enums.EnumInserted.ModelIsNotValid){
+         				
+         			<div class="alert alert-danger" >
+         				@Html.ValidationMessageFor(m => m.descricao,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.dt_inicio_vigencia_perfil,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.dt_final_vigencia_perfil,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.id_atividadeBacen,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.id_programa_subvencao,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.peNivelCoberturaMinimo,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.peNivelCoberturaMaximo,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.cdClassificacaoProduto,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.dt_inicio_vigencia_proposta,"", new {style="" })<br/>
+         				@Html.ValidationMessageFor(m => m.dt_final_vigencia_proposta,"", new {style="" })<br/>
+         			</div>
+         			}else if(Model.inserted == SISSERHelper.Enums.EnumInserted.DescricaoExists){
+						<div class="alert alert-danger" >	
+							@SISSER_MVC.Models.Helper.erroMessage
+						</div>
+         			}else{
+         				<div class="alert alert-danger">
+                                <span class="sr-only">Erro:</span>
+                                Algo de errado aconteceu! Entre em contato com a T.I. Código: @Model.inserted.ToString()
+                                
+                        </div>
+         			}
+         			
+         		}
+         		
+         	</div>
+    	</div>
+    	}
+
+	</div>
+

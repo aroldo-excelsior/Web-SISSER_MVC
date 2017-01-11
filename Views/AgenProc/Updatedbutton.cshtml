@@ -1,0 +1,139 @@
+﻿@{
+
+	var executando =  SISSERCore.Facade.Instance.ListarExecucaoProcesso(SISSERCore.EnumExecucaoProcessoStatus.Executando);
+	
+	var hist =  SISSERCore.Facade.Instance.ListarExecucaoProcesso(null);
+	Boolean vigencia = true;
+	Boolean exec = false;
+	
+	int minuto = DateTime.Now.Minute;
+	
+	
+    DateTime now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, minuto, 0);
+    
+    
+	if(hist.Count != 0){
+		vigencia = (now > hist[hist.Count-1].DtFinalVigencia);
+		exec = ((hist[hist.Count-1].StatusExecucao == SISSERCore.EnumExecucaoProcessoStatus.Executando) || (hist[hist.Count-1].StatusExecucao == SISSERCore.EnumExecucaoProcessoStatus.Pendente));
+       
+	}
+	
+	int progress = int.Parse(ViewData["progress"].ToString());
+	
+}
+
+@if(exec){
+	@Html.Label("Information","Já existe um processo para ser executado, aguarde..",new{@class="linfo",style="color:#FF4500;"})
+	<br></br>
+	<a href='' class="btn btn-primary " id="Autorizar_LProposta">Atualizar</a>
+	
+}else if(!vigencia){
+	@Html.Label("Information","Aguarde o final da vigência do ultimo processo.",new{@class="linfo",style="color:#FF4500;"})
+	<div class="progress" style="width:50%">
+    <div class="progress-bar" role="progressbar" aria-valuenow=@progress aria-valuemin="0" aria-valuemax="100" >
+      <span class="sr-only"></span>
+    </div>
+  </div>
+	<br></br>
+	<a href='' class="btn btn-primary " id="Autorizar_LProposta">Atualizar</a>
+
+}else{
+ 	<a href='@Url.Action("Agendar","AgenProc",new{pagina = Model.PageNumber })' class="btn btn-primary " id="Autorizar_LProposta">Executar Processos</a>
+}
+
+
+	<br></br>
+
+	<span class="CdSISSER"> Em Execução</h2> </span> 
+	<br></br>
+	<div class="table-responsive" style="width:100%">
+	<table class="display dataTable no-footer tableger" style="width: 100%;">
+		<tr>
+			<th>ID</th>
+			<th>Descricão</th>
+			<th>Início Vigência</th>
+			<th>Final Vigência</th>
+			<th>Hora Execucão</th>
+			<th>Status Execucão</th>
+		</tr>
+		@if(executando.Count != 0){
+		 foreach(var lexec in executando){
+		<tr class="odd gradeX">
+			<td>@lexec.ID</td>
+			<td>@lexec.Descricao</td>
+			<td>@lexec.DtInicioVigencia</td>
+			<td>@lexec.DtFinalVigencia</td>
+			<td>@lexec.HoraExecucao</td>
+			<td>@lexec.StatusExecucao</td>
+		</tr>
+			}
+		}else{
+			<tr>
+				<td colspan="8" align="center">
+					@Html.Label("Information","Não a processos para esta lista.",new{@class="linfo",style="color:red;"})
+				</td>
+			</tr>
+		}
+	</table>
+	
+	
+	</div>
+	<br></br>
+	<span class="CdSISSER"> Histórico</h2> </span>
+	<br></br>	
+	<div class="table-responsive" style="width:100%">
+	<table class="display dataTable no-footer tableger" style="width: 100%;">
+		<tr>
+			<th>ID</th>
+			<th>Descricão</th>
+			<th>Início Vigência</th>
+			<th>Final Vigência</th>
+			<th>Hora Execucão</th>
+			<th>Status Execucão</th>
+		</tr>
+		@if(Model.Count != 0){
+			foreach(var lexec in Model){
+			<tr class="odd gradeX">
+				<td>@lexec.ID</td>
+				<td>@lexec.Descricao</td>
+				<td>@lexec.DtInicioVigencia</td>
+				<td>@lexec.DtFinalVigencia</td>
+				<td>@lexec.HoraExecucao</td>
+				<td>@lexec.StatusExecucao</td>
+			</tr>
+			}
+			
+		}else{
+			<tr>
+				<td colspan="8" align="center">
+					@Html.Label("Information","Não a processos para esta lista.",new{@class="linfo",style="color:red;"})
+				</td>
+			</tr>
+		
+		}
+	</table>
+		
+	</div>
+	<div>
+   		Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+     
+    		@if (Model.HasPreviousPage){
+        			@Html.ActionLink("<<", "AgenProcIndex", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter})
+        			@Html.Raw(" ");
+        			@Html.ActionLink("< Anterior", "AgenProcIndex", new { pagina = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter})
+    		}else{
+        			@:<<
+        			@Html.Raw(" ");
+        			@:< Anterior
+    			}
+     
+    		@if (Model.HasNextPage){
+        			@Html.ActionLink("Próxima >", "AgenProcIndex", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter })
+        			@Html.Raw(" ");
+        			@Html.ActionLink(">>", "AgenProcIndex", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter })
+    		}else{
+        			@:Próxima >
+        			@Html.Raw(" ")
+        			@:>>
+    			}
+	</div>	

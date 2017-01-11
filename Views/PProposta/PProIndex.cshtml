@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<SISSERHelper.EventLog>
+﻿@model PagedList.IPagedList<SISSERHelper.Models.EventLog>
 
 @{
 	ViewBag.Title = "Index";
@@ -6,14 +6,27 @@
 	
 }
 
-<div class="ger">
-	
+<div class="ger" align="center">
 	
 		@using (Html.BeginForm("Listar","PProposta",FormMethod.Post,new {@nome = "formProp", @id = "formProp"})){
- 				 <H4 ALIGN="center">
- 				 <span id "prop" class="CdSISSER">Proposta: </span>@Html.TextBox("proposta","", new { @onkeypress = "return PermiteSomenteNumeros(event);", required = "required",@class ="btntext btntext-default",@id="proposta" })
-				<input type="submit"  value="Procurar"  onclick="return validar();" class="btn btn-primary" />
-				</h4>
+ 				 
+			<div class="gerPro" align="left">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="orm-group col-md-8 col-sm-12 col-lg-8">          
+                  		 @Html.Label("Proposta: ", new { @class = "proposta_label formlabel", id = "proposta_label" })
+               				<div class="input-content" style="width: 100%;">
+                   				@Html.TextBox("proposta","", new { @onkeypress = "return PermiteSomenteNumeros(event);", required = "required",@class ="form-control",@id="proposta" })
+              				</div>
+         				</div>
+				
+						<div class="orm-group col-md-4 col-sm-12 col-lg-4">  
+				 			@Html.Label("", new { @class = "proposta_label formlabel", id = "proposta_label" })
+							<input type="submit"  value="Procurar"  onclick="return validar();" class="btn btn-primary bproposta" />
+						</div>
+					</div>
+				</div>
+			</div>
 			}
 			
 				<div align="center">
@@ -21,27 +34,28 @@
     			
     				if(Model.Count != 0){
     				
-    					if(Model[0].Codigo_Proposta_SISSER != null){
-    					
-    					
-    						if(Model[0].Codigo_Proposta_SISSER.Equals("Não Apresenta") && Model[0].autorizacao_usuario == 0){
-    							<span id="CdSISSER" class="CdSISSER">Código Proposta SISSER: </span>
+    					if(@ViewBag.apolice.programaSubvencaoApolice.codigo_Proposta_SISSER != null){
+    					<div class="divCdSISSER">
+    						@if(@ViewBag.apolice.programaSubvencaoApolice.codigo_Proposta_SISSER.Equals("Não Apresenta") && @ViewBag.apolice.autorizacao_usuario == 0){
     						
-    							<a href='@Url.Action("Autorizar","PProposta",new { id= @Model[0].IDApolice, proposta= @Model[0].Proposta })' class="btn btn-primary">Autorizar</a>
+	    						<span id="CdSISSER" class="CdSISSER">Código Proposta SISSER: </span>
+    						
+    							<a href='@Url.Action("Autorizar","PProposta",new { id= @ViewBag.apolice.id, proposta= @ViewBag.apolice.nrProposta })' class="btn btn-primary">Autorizar</a>
     						
     						
     						}else{
     					
-    							<span id="CdSISSER" class="CdSISSER">Código Proposta SISSER: </span><span class="CdSISSERVal"> @Model[0].Codigo_Proposta_SISSER </span>
+    							<span id="CdSISSER" class="CdSISSER">Código Proposta SISSER: </span><span class="CdSISSERVal"> @ViewBag.apolice.programaSubvencaoApolice.codigo_Proposta_SISSER </span>
     						
     						}
+    					</div>	
     					}
 						<br></br>
-    					<div class="table-responsive" style="width:90%">
+    					<div class="table-responsive" style="width:100%">
     						<table class="display dataTable no-footer table" id="Ltable">
   								<tr>
    						 			<th>nº</th>
-   						 			<th><a href="@Url.Action("Listar","PProposta",new { pagina = Model.PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, proposta = @Request["proposta"] })" style="text-decoration:none; color:black;">Data do Evento<img src='~/Content/cb.jpg' height='14' width='20'/></a></th>
+   						 			<th><a href="@Url.Action("Listar","PProposta",new { pagina = Model.PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, proposta = @Request["proposta"],act=2 })" style="text-decoration:none; color:black;">Data do Evento<img src='~/Content/cb.jpg' height='14' width='20'/></a></th>
     								<th>Descrição do Tipo do Evento</th>
     								<th>Descrição do Evento</th>
     								<th>Menssagem de Erro</th>
@@ -55,21 +69,21 @@
   								}else{
     							foreach(var eve in Model){
     								<tr class="odd gradeX">
-        								<td>@eve.Sequencia</td>
+        								<td>@eve.sequencia</td>
         								<td>@eve.dt_rgs_insercao</td>
-        								<td>@eve.Descricao_Do_Tipo_De_Evento</td>
-        								<td>@eve.Descricao_Do_Evento</td>
-        								@if(eve.Message_De_Erro.Equals("Apresenta")){
-        								<td class="red" >@eve.Message_De_Erro</td>
+        								<td>@eve.eventType.descricao</td>
+        								<td>@eve.descricao</td>
+        								@if(eve.message_De_Erro.Equals("Apresenta")){
+        								<td style="color:red" >@eve.message_De_Erro</td>
         								}else{
-        								<td class="green">@eve.Message_De_Erro</td>
+        								<td style="color:green">@eve.message_De_Erro</td>
         								}
-        								@if(eve.Stack_Trace.Equals("Não Apresenta")){
-        								<td><a href='#' onclick='return false' class="btntabela btn-primary" >@eve.Stack_Trace</a></td>
+        								@if(eve.stack_Trace.Equals("Não Apresenta")){
+        								<td><a href='#' onclick='return false' class="btntabela btn-primary" >@eve.stack_Trace</a></td>
         								}else{
         								<td><a href='@Url.Action("ShowXml","PProposta",new {id= @eve.id, comando= "trace" })' target="_blank" class="btntabela btn-primary">Exibir</a></td>
         								}
-        								@if(eve.Argumento.StartsWith("idProposta")){
+        								@if(eve.argumento.StartsWith("idProposta")){
         								<td><a href='#' onclick='return false' class="btntabela btn-primary">Não apresenta</a></td>
         								}else{
         								<td><a href='@Url.Action("ShowXml","PProposta",new {id= @eve.id, comando= "dados" })' target="_blank" class="btntabela btn-primary" >Exibir</a></td>
@@ -80,7 +94,7 @@
     							}
     							</table>
     							<div>
-   				 					Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+   				 					Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
      
     								@if (Model.HasPreviousPage){
         								@Html.ActionLink("<<", "Listar", new { pagina = 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, proposta = @Request["proposta"]  })

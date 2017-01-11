@@ -15,16 +15,24 @@ namespace SISSER_MVC.Models
 	/// </summary>
 	public class Helper
 	{
+		
+		private static string _erroMessage;
+		
+		
+		public static string erroMessage{
+		
+			get{return _erroMessage;}
+			set{_erroMessage = value;}
+			
+		}
+		
 		public Helper()
 		{
 		
 			
 		}
 		
-		public static void argsIsNull(){
 		
-			
-		}
 		
 	}
 }

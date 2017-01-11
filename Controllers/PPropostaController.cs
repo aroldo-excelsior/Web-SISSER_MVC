@@ -24,20 +24,29 @@ namespace SISSER_MVC.Controllers
 		
 		
 		
-		public ActionResult Listar(string proposta, int? pagina)
+		public ActionResult Listar(string proposta, int? pagina, int? act)
 		{
+			
+			act = act ?? 1;
 			
 			if(Session["pOrder"] == null){
 				Session["pOrder"] = "DESC";
-			}else if(Session["pOrder"].ToString().Equals("DESC")){
+			}else if(act == 2 &&Session["pOrder"].ToString().Equals("DESC")){
 				Session["pOrder"] ="ASC";
-			}else{
+			}else if(act == 2){
 				Session["pOrder"] = "DESC";
 			}
 			
-			var ev = Controle.Getinstance().ResgatarEventLogs(Session["pOrder"].ToString(),proposta);
-			if(ev.Count != 0)
-			ev[0].Proposta = long.Parse(proposta);
+			SISSERHelper.Models.Proposta prop = Controle.Getinstance().BuscarProposta(proposta);
+			List<SISSERHelper.Models.EventLog> ev = new List<SISSERHelper.Models.EventLog>();
+			
+			if(prop.nrProposta != null){
+			
+				ev = Controle.Getinstance().ResgatarEventLogs(Session["pOrder"].ToString(),prop.id);
+				prop.nrProposta = proposta;
+				ViewBag.apolice = prop;
+				
+			}
 			
 			
             int paginaTamanho = 10;
@@ -45,18 +54,8 @@ namespace SISSER_MVC.Controllers
 
             return View("PProIndex","",ev.ToPagedList(paginaNumero, paginaTamanho));
 			
-			
-			//return View("PProIndex","",ev);
 		}
 		
-		//public ActionResult Atualizar(string proposta){
-		
-		//	List<SISSERHelper.EventLog> ev = Controle.Getinstance().ResgatarEventLogs(proposta);
-		//	ev[0].Proposta = long.Parse(proposta);
-			
-		//	return View("PProIndex","",ev);
-			
-		//}
 		
 		
 		public ActionResult Autorizar(int id,string proposta)
@@ -81,7 +80,7 @@ namespace SISSER_MVC.Controllers
     			 Response.Charset = "";
     			// Response.Cache.SetCacheability(HttpCacheability.NoCache);
     			 Response.ContentType = "application/xml";
-    			 Response.Write(Controle.Getinstance().ResgatarArgsStackTraceEventLogs(id.ToString()).Argumento);
+    			 Response.Write(Controle.Getinstance().ResgatarArgsStackTraceEventLogs(id.ToString()).argumento);
     			 Response.Flush();
     			 Response.End();
 				
@@ -92,7 +91,7 @@ namespace SISSER_MVC.Controllers
     			 Response.Charset = "";
     			// Response.Cache.SetCacheability(HttpCacheability.NoCache);
     			 Response.ContentType = "application/xml";
-    			 Response.Write(Controle.Getinstance().ResgatarArgsStackTraceEventLogs(id.ToString()).Stack_Trace);
+    			 Response.Write(Controle.Getinstance().ResgatarArgsStackTraceEventLogs(id.ToString()).stack_Trace);
     			 Response.Flush();
     			 Response.End();
     			 

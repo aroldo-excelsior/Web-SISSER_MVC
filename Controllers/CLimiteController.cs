@@ -22,7 +22,6 @@ namespace SISSER_MVC.Controllers
 		public ActionResult CLimIndex(String TCPF, String anos)
 		{
 			
-			
 			String login = Request.ServerVariables["AUTH_USER"];
 			List<Segurado> segurados = Facade.Instance.ConsultarLimiteFinanceiroSegurado(TCPF,int.Parse(anos),login);
 			

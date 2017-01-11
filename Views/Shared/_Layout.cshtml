@@ -4,8 +4,8 @@
 		
 		<title>SISSE_GUI</title>
 		
-		<meta charset="utf-8">
-  		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8"/>
+  		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		
@@ -28,27 +28,18 @@
      	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" 
         type="text/css" />
         
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         
-        
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 		
- 		
- 		
  		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
  		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-     	
+        
+  		
+ 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 		
      	<script src="@Url.Content("~/Scripts/mascara.js")" 
         type="text/javascript"></script>
         	<script src="@Url.Content("~/Scripts/modernizr-2.5.3.js")" 
-        type="text/javascript"></script>
-        
-        <script src="@Url.Content("~/Scripts/ValidarProposta.js")" 
-        type="text/javascript"></script>
-        
-        
-        <script src="@Url.Content("~/Scripts/replaceForAutorizar.js")" 
         type="text/javascript"></script>
         
         <script src="@Url.Content("~/Scripts/js-sisser.js")" 
@@ -60,16 +51,6 @@
         
         
         
-       <!--bootstrap inicio
-       
-        <script src="@Url.Content("~/Scripts/bootstrap.min.js")" 
-        type="text/javascript"></script>
-        
-        <script src="@Url.Content("~/Scripts/jquery.min.js")" 
-        type="text/javascript"></script>
-        
-     	
-     	<!--bootstrap fim-->
      	
 		<script>
 			$(function() {
@@ -105,50 +86,120 @@
    				});
 			});
 			
+			$(function() {
+   				$( "#dt_inicio_vigencia_perfil" ).datepicker({
+   					dateFormat: 'dd/mm/yy',
+   					changeMonth: true,
+        			changeYear: true,
+        			showOtherMonths: true,
+        			selectOtherMonths: true,
+        			dateFormat: 'dd/mm/yy',
+        			dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        			dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        			dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        			monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        			monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+   			
+   				});
+			});
+			
+			$(function() {
+   				$( "#dt_final_vigencia_perfil" ).datepicker({
+   					dateFormat: 'dd/mm/yy',
+   					changeMonth: true,
+        			changeYear: true,
+        			showOtherMonths: true,
+        			selectOtherMonths: true,
+        			dateFormat: 'dd/mm/yy',
+        			dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        			dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        			dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        			monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        			monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+   			
+   				});
+			});
+			
+			$(function() {
+   				$( "#dt_inicio_vigencia_proposta" ).datepicker({
+   					dateFormat: 'dd/mm/yy',
+   					changeMonth: true,
+        			changeYear: true,
+        			showOtherMonths: true,
+        			selectOtherMonths: true,
+        			dateFormat: 'dd/mm/yy',
+        			dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        			dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        			dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        			monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        			monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+   			
+   				});
+			});
+			
+			$(function() {
+   				$( "#dt_final_vigencia_proposta" ).datepicker({
+   					dateFormat: 'dd/mm/yy',
+   					changeMonth: true,
+        			changeYear: true,
+        			showOtherMonths: true,
+        			selectOtherMonths: true,
+        			dateFormat: 'dd/mm/yy',
+        			dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        			dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        			dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        			monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        			monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+   			
+   				});
+			});
+			
 		</script>
 	</head>
-	<body background="res\background.jpg">
-		<div id="geral">
+	<body background="~/Content/background.jpg">
+		<div id="geral"  style="min-width:300px;" >
 				<div id="cabecalho" align="center" >
             		<div class="container-fluid">
             			<div class="row">
-            				<div class="col-md-3" align="left" >
-            				<img  src="~/Content/Excelsior.png" class="alignleft">
+            				<div class="col-sm-4 col-md-3 col-lg-3" align="left" >
+            				<img  src="~/Content/Excelsior.png" class="alignleft"/>
             				</div>
-            				<div class="col-md-6"  style="min-width:750px;">
+            				<div class="col-sm-8 col-md-8 col-lg-7 divTitle" >
             				<a class="Title" href='@Url.Action("Index","Home","")'>Controle de Subvenção Federal</a>
             				</div>
-            				<div class="col-md-3" align="left">
-            				<span id="lUser" class="lUser">Usuario: @Request.ServerVariables["AUTH_USER"]</span>
+            				<div class="col-sm-12 col-md-12 col-lg-2" align="left">
             				</div>
             			</div>
             		</div>
+            		<div align="left"><span id="lUser" class="lUser">Usuário: @Request.ServerVariables["AUTH_USER"]</span></div>
 				</div>
-	
-            	<div id="menu" >
-					<div class="dropdown">
-						<a class="btn btn-primary dropdown-toggle"  id="dropdownMenu1" data-toggle="dropdown"> &nbsp Menu<span class="caret"></span> </a>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        					<li><a href="@Url.Action("PProIndex","PProposta")" style="border-bottom: 1px solid #ccc">Pesquisar Prospota</a></li>
-        					<li><a href="@Url.Action("LProIndex","LProposta")" style="border-bottom: 1px solid #ccc">Listar Prospotas</a></li>
-        					<li><a href="@Url.Action("CLimIndex","CLimite")">Consultar Limite</a></li>
-      					</ul>
-      				</div>
+				<div class="content" style="width:100%; background-color:lavender;" >
+            				<div class="menucontent">
+            					<div id="menu" class="dropdown">
+									<button class="dropbtn">Menu <span class="caret"></span></button>
+									<div class="dropdown-content">
+        								<a  href="@Url.Action("PProIndex","PProposta")" >Pesquisar Prospota</a>
+        								<a  href="@Url.Action("LProIndex","LProposta")" >Listar Prospotas</a>
+        								<a  href="@Url.Action("CLimIndex","CLimite")" >Consultar Limite</a>
+        								<a  href="@Url.Action("CadPerfIndex","CadPerfil")">Cadastrar Perfil Envio </a>
+        								<a  href="@Url.Action("LPerfilIndex","LPerfil")">Listar Perfis</a>
+        								<a  href="@Url.Action("AgenProcIndex","AgenProc")">Executar Processos</a>
+      								</div>
+								</div>
+							</div>
+            				<div id="conteudo" class="conteudo" >
+								<br/>
+              						@RenderBody()
+								<br/>
+							</div>
 				</div>
-					
-				
-            			
-            	<div id="conteudo" style="background-color:lavender;">
-					</br>
-              			@RenderBody()
-					</br>
-				</div>
+				<div class="clear" style="clear: both;"> </div>
            		<div id="rodape">
            		
 					
                		<footer> Version 2.0.1 - 2016 by Cia Excelsior de Seguros Development Team.</footer>
 
             	</div>
-           </div>
+        </div>
 	</body>
 </html>

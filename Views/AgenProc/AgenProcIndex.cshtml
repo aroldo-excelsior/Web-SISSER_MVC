@@ -1,0 +1,47 @@
+﻿@model   PagedList.IPagedList <SISSERCore.ExecucaoProcesso>
+
+@{
+	ViewBag.Title = "AgenProcIndex";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	
+	
+}
+
+
+
+
+  <script type="text/javascript">
+
+    function atualizarDefinicao() {
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("Updatedbutton","AgenProc")',
+            dataType: 'html',
+            cache: false,
+            async: true,
+            success: function (data) {
+                $('#Updated').html(data);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        setInterval(atualizarDefinicao, 10000);
+        
+    });
+
+ </script>
+
+
+
+<div align="center" class="agenprocger">
+
+	<br></br>
+	<div id="Updated">
+	
+		 @{
+       		 Html.RenderPartial("Updatedbutton");
+    		}
+	</div>
+</div>
+

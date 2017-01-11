@@ -1,0 +1,77 @@
+﻿@model SISSERHelper.Models.PerfilEnvioProgramaSubvencao
+
+				<div class="form-group col-md-12 col-sm-12 col-lg-12">          
+                   @Html.LabelFor(m => m.descricao, new { @class = "descricao_label formlabel", id = "descricao_label" }) <label class="descricao_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.TextBoxFor(m => m.descricao, new { @class = "form-control formger", id = "descricao", maxlength = "250", name = "descricao", type = "text" })
+              		</div>
+         		</div>
+     			<div class="orm-group col-md-6 col-sm-12 col-lg-6">          
+                   @Html.LabelFor(m => m.dt_inicio_vigencia_perfil, new { @class = "dt_inicio_vigencia_perfil_label formlabel", id = "dt_inicio_vigencia_perfil_label" }) <label class="dt_inicio_vigencia_perfil_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.TextBoxFor(m => m.dt_inicio_vigencia_perfil, new { @class = "form-control formger", id = "dt_inicio_vigencia_perfil", maxlength = "250", name = "dt_inicio_vigencia_perfil", type = "text" })
+              		</div>
+         		</div>
+         		<div class="orm-group col-md-6 col-sm-12 col-lg-6">          
+                   @Html.LabelFor(m => m.dt_final_vigencia_perfil, new { @class = "dt_inicio_vigencia_perfil_label formlabel", id = "dt_final_vigencia_perfil_label" }) <label class="dt_final_vigencia_perfil_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.TextBoxFor(m => m.dt_final_vigencia_perfil, new { @class = "form-control formger", id = "dt_final_vigencia_perfil", maxlength = "250", name = "dt_final_vigencia_perfil", type = "text" })
+              		</div>
+         		</div>
+         		<div class="orm-group col-md-12 col-sm-12 col-lg-12">          
+                   @Html.LabelFor(m => m.id_atividadeBacen, new { @class = "id_atividadeBacen_label formlabel", id = "id_atividadeBacen_label" }) <label class="id_atividadeBacen_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.DropDownListFor(
+                 			m => m.id_atividadeBacen,
+                 			new SelectList(SISSERHelper.Controle.Getinstance().getListBacen(), "id", "descricao"),
+                 			"--Selecione--",
+                 			new { @class = "form-control formger", id = "id_atividadeBacen", name = "id_atividadeBacen", tabindex = "0" }
+                 			)
+              		</div>
+         		</div>
+         		<div class="form-group col-md-12 col-sm-12 col-lg-12">          
+                   @Html.LabelFor(m => m.id_programa_subvencao, new { @class = "id_programa_subvencao_label formlabel", id = "dt_final_vigencia_perfil_label" }) <label class="id_programa_subvencao_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;"> 
+                   		@Html.DropDownListFor(
+                 			m => m.id_programa_subvencao,
+                 			new SelectList(SISSERHelper.Controle.Getinstance().getListProgramaSubvencao(), "id", "id_descrcao"),
+                 			"--Selecione--",
+                 			new { @class = "form-control formger", id = "id_programa_subvencao", name = "id_programa_subvencao", tabindex = "0" }
+                 			)
+              		</div>
+         		</div>
+         		<div class="orm-group col-md-6 col-sm-12 col-lg-6">          
+                   @Html.LabelFor(m => m.peNivelCoberturaMinimo, new { @class = "peNivelCoberturaMinimo_label formlabel", id = "dpeNivelCoberturaMinimo_label" }) <label class="peNivelCoberturaMinimo_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.TextBoxFor(m => m.peNivelCoberturaMinimo, new { @class = "form-control formger", @onkeypress = "return PermiteSomenteNumeros(event);", id = "peNivelCoberturaMinimo",type = "number", name = "peNivelCoberturaMinimo" })
+              		</div>
+         		</div>
+         		<div class="orm-group col-md-6 col-sm-12 col-lg-6">          
+                   @Html.LabelFor(m => m.peNivelCoberturaMaximo, new { @class = "peNivelCoberturaMaximo_label formlabel", id = "peNivelCoberturaMaximo_label" }) <label class="peNivelCoberturaMaximo_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.TextBoxFor(m => m.peNivelCoberturaMaximo, new { @class = "form-control formger", @onkeypress = "return PermiteSomenteNumeros(event);", id = "peNivelCoberturaMaximo",type = "number", name = "peNivelCoberturaMaximo" })
+              		</div>
+         		</div>
+         		<div class="orm-group col-md-12 col-sm-12 col-lg-12">          
+                   @Html.LabelFor(m => m.cdClassificacaoProduto, new { @class = "cdClassificacaoProduto_label formlabel", id = "cdClassificacaoProduto_label" }) <label class="cdClassificacaoProduto_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.DropDownListFor(
+                 			m => m.cdClassificacaoProduto,
+                 			new SelectList(SISSERHelper.Controle.Getinstance().getListProduto(), "cod_Produto_SoftwareOrigem", "descricao"),
+                 			"--Selecione--",
+                 			new { @class = "form-control formger", id = "cdClassificacaoProduto", name = "cdClassificacaoProduto", tabindex = "0" }
+                 			)
+                   	</div>
+         		</div>
+         		<div class="orm-group col-md-6 col-sm-12 col-lg-6">          
+                   @Html.LabelFor(m => m.dt_inicio_vigencia_proposta, new { @class = "dt_inicio_vigencia_proposta_label formlabel", id = "dt_inicio_vigencia_proposta_label" }) <label class="dt_inicio_vigencia_proposta_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.TextBoxFor(m => m.dt_inicio_vigencia_proposta, new { @class = "form-control formger",id = "dt_inicio_vigencia_proposta", maxlength = "250", name = "dt_inicio_vigencia_proposta", type = "text" })
+              		</div>
+         		</div>
+         		<div class="orm-group col-md-6 col-sm-12 col-lg-6">          
+                   @Html.LabelFor(m => m.dt_final_vigencia_proposta, new { @class = "dt_final_vigencia_proposta_label formlabel", id = "dt_final_vigencia_proposta_label" }) <label class="dt_final_vigencia_proposta_invalido" style="display: none;"> (Invalido)</label>
+               		<div class="input-content" style="width: 100%;">
+                   		@Html.TextBoxFor(m => m.dt_final_vigencia_proposta, new { @class = "form-control formger", id = "dt_final_vigencia_proposta",maxlength = "250", name = "dt_final_vigencia_proposta", type = "text" })
+              		</div>
+         		</div>
