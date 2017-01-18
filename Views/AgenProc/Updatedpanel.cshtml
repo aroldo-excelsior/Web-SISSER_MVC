@@ -1,0 +1,193 @@
+﻿@{
+	
+	List<object> comands = new List<object>();
+	
+
+	dynamic obj = new { 
+	val = @System.Configuration.ConfigurationManager.AppSettings["cargaSubvencaoProposta"], 
+	valEnum = SISSERCore.EnumExecucaoTarefaTipo.CargaSubvencaoProposta,
+	name = "Cargar Subvenção Proposta"
+	};  
+	comands.Add(obj);
+	obj = new {val = @System.Configuration.ConfigurationManager.AppSettings["cargaSubvencaoCancelamentoProposta"], 
+	valEnum = SISSERCore.EnumExecucaoTarefaTipo.CargaSubvencaoCancelamentoProposta,
+	name = "Carga Subvenção Cancelamento Proposta"
+	}; 
+	comands.Add(obj);
+	obj = new {val = @System.Configuration.ConfigurationManager.AppSettings["cargaSubvencaoApolice"], 
+	valEnum = SISSERCore.EnumExecucaoTarefaTipo.CargaSubvencaoApolice,
+	name = "Carga Subvenção Apólice"
+	}; 
+	comands.Add(obj);
+	obj = new {val = @System.Configuration.ConfigurationManager.AppSettings["cargaSubvencaoCancelamentoApolice"], 
+	valEnum = SISSERCore.EnumExecucaoTarefaTipo.CargaSubvencaoCancelamentoApolice,
+	name = "Carga Subvenção Cancelamento Apólice"
+	}; 
+	comands.Add(obj);
+	obj = new {val = @System.Configuration.ConfigurationManager.AppSettings["atualizarProgramaSub"], 
+	valEnum = SISSERCore.EnumExecucaoTarefaTipo.AtualizarProgramaSub,
+	name = "Atualizar Programa Subvenção"
+	}; 
+	comands.Add(obj);
+	obj = new {val = @System.Configuration.ConfigurationManager.AppSettings["enviarPropostaProgramaSub"], 
+	valEnum = SISSERCore.EnumExecucaoTarefaTipo.EnviarPropostaProgramaSub,
+	name = "Enviar Proposta Programa Subvenção"
+	}; 
+	comands.Add(obj);
+	obj = new {val = @System.Configuration.ConfigurationManager.AppSettings["enviarCancelamentoPropostasProgramaSub"], 
+	valEnum = SISSERCore.EnumExecucaoTarefaTipo.EnviarCancelamentoPropostasProgramaSub,
+	name = "Enviar Cancelamento Proposta Programa Subvenção"
+	}; 
+	comands.Add(obj);
+	obj = new {val = @System.Configuration.ConfigurationManager.AppSettings["enviarApoliceProgramaSub"], 
+	valEnum =  SISSERCore.EnumExecucaoTarefaTipo.EnviarApoliceProgramaSub,
+	name = "Enviar Apólice Programa Subvenção"
+	}; 
+	comands.Add(obj);
+	obj = new {val = @System.Configuration.ConfigurationManager.AppSettings["enviarCancelamentoApolicesProgramaSub"], 
+	valEnum = SISSERCore.EnumExecucaoTarefaTipo.EnviarCancelamentoApolicesProgramaSub,
+	name = "Enviar Cancelamento Apolice Programa Subvenção"
+	}; 
+	comands.Add(obj);
+	
+	
+}
+
+	<div class="table-responsive" style="width:70%">
+	<table class="display dataTable no-footer tableger" style="width: 100%;">
+		<tr>
+			<th>Descricão</th>
+			<th style="width:100px" >Comando</th>
+		</tr>
+		@foreach(var com in comands){
+			if(Convert.ToBoolean(@com.GetType().GetProperty("val").GetValue(com,null))){
+			<tr class="odd gradeX">
+				<td>@com.GetType().GetProperty("name").GetValue(com,null)</td>
+				<td><a href='@Url.Action("Agendar","AgenProc",new{paginaproc = Model[1].PageNumber,paginatask = Model[0].PageNumber, com = @com.GetType().GetProperty("valEnum").GetValue(com,null)})' class="btn btn-primary " id="Autorizar_LProposta">Executar</a></td>
+			</tr>
+			}
+			
+			
+		}
+	</table>
+	</div>
+	<br></br>
+	
+	<span class="CdSISSER"> Histórico de Execução de Tarefa </h2> </span>
+	<br></br>	
+	
+	<div class="table-responsive" style="width:90%">
+	<table class="display dataTable no-footer tableger" style="width: 100%;">
+		<tr>
+			<th>ID</th>
+			<th>Descricão</th>
+			<th>DtUltimaExecucao</th>
+			<th>StatusExecucao</th>
+		</tr>
+		@if(Model[0].Count != 0){
+			foreach(var lexec in Model[0]){
+			<tr class="odd gradeX">
+				<td>@lexec.ID</td>
+				<td>@lexec.Descricao</td>
+				<td>@lexec.DtUltimaExecucao</td>
+				<td>@lexec.StatusExecucao</td>
+			</tr>
+			}
+			
+		}else{
+			<tr>
+				<td colspan="8" align="center">
+					@Html.Label("Information","Não a processos para esta lista.",new{@class="linfo",style="color:red;"})
+				</td>
+			</tr>
+		
+		}
+	</table>
+		
+	</div>
+	<div>
+   		Página @(Model[0].PageCount < Model[0].PageNumber ? 0 : Model[0].PageNumber) de @Model[0].PageCount
+     
+    		@if (Model[0].HasPreviousPage){
+        			@Html.ActionLink("<<", "AgenProcIndex", new { paginaproc = Model[1].PageNumber , paginatask = 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter})
+        			@Html.Raw(" ");
+        			@Html.ActionLink("< Anterior", "AgenProcIndex", new { paginaproc = Model[1].PageNumber ,paginatask = Model[0].PageNumber -1 ,sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter})
+    		}else{
+        			@:<<
+        			@Html.Raw(" ");
+        			@:< Anterior
+    			}
+     
+    		@if (Model[0].HasNextPage){
+        			@Html.ActionLink("Próxima >", "AgenProcIndex", new { paginaproc = Model[1].PageNumber,paginatask = Model[0].PageNumber + 1  ,sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter })
+        			@Html.Raw(" ");
+        			@Html.ActionLink(">>", "AgenProcIndex", new { paginaproc = Model[1].PageNumber , paginatask = Model[0].PageCount ,sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter })
+    		}else{
+        			@:Próxima >
+        			@Html.Raw(" ")
+        			@:>>
+    			}
+	</div>	
+	
+
+
+	<br></br>
+	<span class="CdSISSER"> Histórico de Execução Completa </h2> </span>
+	<br></br>	
+	
+	<div class="table-responsive" style="width:90%">
+	<table class="display dataTable no-footer tableger" style="width: 100%;">
+		<tr>
+			<th>ID</th>
+			<th>Descricão</th>
+			<th>Início Vigência</th>
+			<th>Final Vigência</th>
+			<th>Hora Execucão</th>
+			<th>Status Execucão</th>
+		</tr>
+		@if(Model[1].Count != 0){
+			foreach(var lexec in Model[1]){
+			<tr class="odd gradeX">
+				<td>@lexec.ID</td>
+				<td>@lexec.Descricao</td>
+				<td>@lexec.DtInicioVigencia</td>
+				<td>@lexec.DtFinalVigencia</td>
+				<td>@lexec.HoraExecucao</td>
+				<td>@lexec.StatusExecucao</td>
+			</tr>
+			}
+			
+		}else{
+			<tr>
+				<td colspan="8" align="center">
+					@Html.Label("Information","Não a processos para esta lista.",new{@class="linfo",style="color:red;"})
+				</td>
+			</tr>
+		
+		}
+	</table>
+		
+	</div>
+	<div>
+   		Página @(Model[1].PageCount < Model[1].PageNumber ? 0 : Model[1].PageNumber) de @Model[1].PageCount
+     
+    		@if (Model[1].HasPreviousPage){
+        			@Html.ActionLink("<<", "AgenProcIndex", new { paginaproc = 1, paginatask = Model[0].PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter})
+        			@Html.Raw(" ");
+        			@Html.ActionLink("< Anterior", "AgenProcIndex", new { paginaproc = Model[1].PageNumber - 1,paginatask = Model[0].PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter})
+    		}else{
+        			@:<<
+        			@Html.Raw(" ");
+        			@:< Anterior
+    			}
+     
+    		@if (Model[1].HasNextPage){
+        			@Html.ActionLink("Próxima >", "AgenProcIndex", new { paginaproc = Model[1].PageNumber + 1,paginatask = Model[0].PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter })
+        			@Html.Raw(" ");
+        			@Html.ActionLink(">>", "AgenProcIndex", new { paginaproc = Model[1].PageCount,paginatask = Model[0].PageNumber, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter })
+    		}else{
+        			@:Próxima >
+        			@Html.Raw(" ")
+        			@:>>
+    			}
+	</div>	

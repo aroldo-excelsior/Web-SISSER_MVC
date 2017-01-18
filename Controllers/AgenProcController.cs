@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using SISSERCore;
 using System.Collections.Generic;
 using PagedList;
+using SISSERHelper.Enums;
 
 namespace SISSER_MVC.Controllers
 {
@@ -13,77 +14,73 @@ namespace SISSER_MVC.Controllers
 	{
 		
 		
-		public ActionResult AgenProcIndex(int? pagina)
+		public ActionResult AgenProcIndex(int? paginaproc, int? paginatask)
 		{
-			ViewData["progress"] = "0";
 			
-			//Response.AddHeader("Refresh", "15");
-            
-			int paginaTamanho = 10;
-            int paginaNumero = (pagina ?? 1);
-            
-			List<ExecucaoProcesso> proclist = Facade.Instance.ListarExecucaoProcesso(null);
-			return View(proclist.ToPagedList(paginaNumero, paginaTamanho));
+			
+			if(Session["com"] != null)
+			Response.Write(Session["com"].ToString());
+			
+			return View(GenerateModel(paginaproc,paginatask));
+			
 		}
 		
-		public ActionResult Agendar(int? pagina){
+		public PartialViewResult Updatedpanel(int? paginaproc,int? paginatask){
+			
+			
+			return PartialView(GenerateModel(paginaproc,paginatask));
+			
+		}
 		
+		public ActionResult Agendar(int? paginaproc, int? paginatask, EnumExecucaoTarefaTipo com){
 			Facade f = Facade.Instance;
 			
 			String User = Request.ServerVariables["AUTH_USER"];
 			
-			int minuto = DateTime.Now.Minute+1;
+			if(com == EnumExecucaoTarefaTipo.EnviarPropostaProgramaSub){
 			
-			if(minuto > 59){
-				minuto -= 60;
+				ExecucaoTarefa tafvin = new ExecucaoTarefa();
+				tafvin.TarefaTipoID = (int)EnumExecucaoTarefaTipo.VincularProgramaSubProposta;
+				f.Inserir(tafvin,User);
+				Session["com"] = EnumExecucaoTarefaTipo.VincularProgramaSubProposta;
 			}
+			          
+           ExecucaoTarefa taf = new ExecucaoTarefa();
+           
+           taf.TarefaTipoID = (int) com;
+         
+           f.Inserir(taf,User);
 			
 			
-			DateTime inicio = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, 0);
-            DateTime final = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, minuto , 0);
-
-            ExecucaoProcesso proc = new ExecucaoProcesso();
-            proc.DtInicioVigencia = inicio;
-            proc.DtFinalVigencia = final;
-            proc.HoraExecucao = DateTime.Now.TimeOfDay;
-            proc.StatusExecucao = EnumExecucaoProcessoStatus.Pendente;
-            proc.Descricao = "Processo Agendado";
             
-            
-
-            f.Inserir(proc, User);
-			
-          
-            
-            return  RedirectToAction("AgenProcIndex");
+            return  RedirectToAction("AgenProcIndex",new {paginaproc = paginaproc,paginatask = paginatask});
 			
 		}
-		public PartialViewResult Updatedbutton(int? pagina){
+		
+		private List<IPagedList> GenerateModel(int? paginaproc,int? paginatask){
 		
 			
-			int paginaTamanho = 10;
-            int paginaNumero = (pagina ?? 1);
+			int  paginaTamanho = 3;
 			
-			List<ExecucaoProcesso> proclist = Facade.Instance.ListarExecucaoProcesso(null);
-			if(proclist.Count != 0){
-				ViewData["progress"]="0";
-				DateTime Dtlastproc = (DateTime)proclist[proclist.Count-1].DtFinalVigencia;
+			List<IPagedList> Pageds = new List<IPagedList>();
+            
 			
-				Dtlastproc = Dtlastproc.AddMinutes(1);
-				DateTime agora = DateTime.Now;
+			/*Model[0]*/
+            int paginaNumerotask = (paginatask ?? 1);
+            List<ExecucaoTarefa> taskList = Facade.Instance.ListarExecucaoTarefa(null);
+            Pageds.Add(taskList.ToPagedList(paginaNumerotask, paginaTamanho));
+            
+            
+            /*Model[1]*/
+            int paginaNumeroproc = (paginaproc ?? 1);
+            List<ExecucaoProcesso> proclist = Facade.Instance.ListarExecucaoProcesso(null);
+			Pageds.Add(proclist.ToPagedList(paginaNumeroproc, paginaTamanho));
 			
-				TimeSpan dif = Dtlastproc - agora;
-			
-				int segunds = 60;
-				ViewData["progress"] = (dif.Seconds*100)/segunds;
-				
-			}else{
-				ViewData["progress"] = "0";
-			}
-			
-			return PartialView(proclist.ToPagedList(paginaNumero, paginaTamanho));
+			return(Pageds);
 			
 			
 		}
+		
+		
 	}
 }

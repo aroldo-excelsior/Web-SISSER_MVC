@@ -38,7 +38,7 @@
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
     <Reference Include="SISSERCore">
-      <HintPath>..\..\..\..\Desktop\SISSERCore\07102016_Alterar_metodo_listarExec_proc_aroldo\07102016_Alterar_metodo_listarExec_proc_aroldo\WindowsService\SISSERCore.dll</HintPath>
+      <HintPath>..\..\..\Ze sisser\13012017_executarTarefa\GuiTest\SISSERCore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -99,7 +99,7 @@
     <None Include="Scripts\mascara.js" />
     <None Include="Scripts\modernizr-2.5.3.js" />
     <None Include="Views\AgenProc\AgenProcIndex.cshtml" />
-    <None Include="Views\AgenProc\Updatedbutton.cshtml" />
+    <None Include="Views\AgenProc\Updatedpanel.cshtml" />
     <None Include="Views\CadPerfil\CadPerfIndex.cshtml" />
     <None Include="Views\CadPerfil\FormCadPerf.cshtml" />
     <None Include="Views\CLimite\CLimIndex.cshtml" />

@@ -1,4 +1,4 @@
-﻿@model   PagedList.IPagedList <SISSERCore.ExecucaoProcesso>
+﻿@model   List<PagedList.IPagedList>
 
 @{
 	ViewBag.Title = "AgenProcIndex";
@@ -9,13 +9,13 @@
 
 
 
-
   <script type="text/javascript">
 
     function atualizarDefinicao() {
         $.ajax({
-            type: 'post',
-            url: '@Url.Action("Updatedbutton","AgenProc")',
+            type: 'get',
+            url: '@Url.Action("Updatedpanel","AgenProc")',
+           	data: { paginaproc: '@(Model[1].PageNumber)',paginatask:'@(Model[0].PageNumber)'},
             dataType: 'html',
             cache: false,
             async: true,
@@ -24,13 +24,15 @@
             }
         });
     }
-
     $(document).ready(function () {
         setInterval(atualizarDefinicao, 10000);
         
     });
 
  </script>
+ 
+ 		
+
 
 
 
@@ -40,8 +42,8 @@
 	<div id="Updated">
 	
 		 @{
-       		 Html.RenderPartial("Updatedbutton");
-    		}
+       		 Html.RenderPartial("Updatedpanel");
+    	}
 	</div>
 </div>
 
