@@ -16,10 +16,7 @@ namespace SISSER_MVC.Controllers
 		
 		public ActionResult AgenProcIndex(int? paginaproc, int? paginatask)
 		{
-			
-			
-			if(Session["com"] != null)
-			Response.Write(Session["com"].ToString());
+		
 			
 			return View(GenerateModel(paginaproc,paginatask));
 			
@@ -42,7 +39,7 @@ namespace SISSER_MVC.Controllers
 				ExecucaoTarefa tafvin = new ExecucaoTarefa();
 				tafvin.TarefaTipoID = (int)EnumExecucaoTarefaTipo.VincularProgramaSubProposta;
 				f.Inserir(tafvin,User);
-				Session["com"] = EnumExecucaoTarefaTipo.VincularProgramaSubProposta;
+				
 			}
 			          
            ExecucaoTarefa taf = new ExecucaoTarefa();
@@ -60,7 +57,7 @@ namespace SISSER_MVC.Controllers
 		private List<IPagedList> GenerateModel(int? paginaproc,int? paginatask){
 		
 			
-			int  paginaTamanho = 3;
+			int  paginaTamanho = 10;
 			
 			List<IPagedList> Pageds = new List<IPagedList>();
             

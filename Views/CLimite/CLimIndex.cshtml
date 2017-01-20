@@ -45,7 +45,7 @@
 			
 			@if(Model != null){
 				
-			<div class="table-responsive" style="width:100%">
+			<div class="table-responsive" style="width:90%">
 			<table class="display dataTable no-footer table">
   				<tr>
    					<th>Nome Segurado</th>
@@ -63,7 +63,7 @@
 				}else{
 				<tr>
 					<td colspan="3" align="center">
-						@Html.Label("Information","Não a dados para este CPF/CNPJ.",new{@class="linfo",style="color:red;"})
+						@Html.Label("Information","Não há dados para este CPF/CNPJ.",new{@class="linfo",style="color:red;"})
 					</td>
 				</tr>	
 			}

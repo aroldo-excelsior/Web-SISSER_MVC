@@ -81,7 +81,7 @@
 		<tr>
 			<th>ID</th>
 			<th>Descricão</th>
-			<th>DtUltimaExecucao</th>
+			<th>Data Última Execução</th>
 			<th>StatusExecucao</th>
 		</tr>
 		@if(Model[0].Count != 0){
@@ -160,7 +160,7 @@
 		}else{
 			<tr>
 				<td colspan="8" align="center">
-					@Html.Label("Information","Não a processos para esta lista.",new{@class="linfo",style="color:red;"})
+					@Html.Label("Information","Não há processos para esta lista.",new{@class="linfo",style="color:red;"})
 				</td>
 			</tr>
 		

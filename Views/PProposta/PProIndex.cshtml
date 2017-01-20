@@ -51,7 +51,7 @@
     					</div>	
     					}
 						<br></br>
-    					<div class="table-responsive" style="width:100%">
+    					<div class="table-responsive" style="width:90%">
     						<table class="display dataTable no-footer table" id="Ltable">
   								<tr>
    						 			<th>nº</th>
@@ -64,7 +64,7 @@
   								</tr>
   								@if(Model.Count == 1 && Model[0].id == 0){
   								<tr class="odd gradeX">
-  									<td colspan="7" align="center" style="color:red"> Não a dados para essa proposta</td>
+  									<td colspan="7" align="center" style="color:red"> Não há dados para essa proposta</td>
   								</tr>
   								}else{
     							foreach(var eve in Model){
